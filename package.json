@@ -1,0 +1,38 @@
+{
+  "name": "quest-pcvr-streamer",
+  "version": "0.1.0",
+  "description": "Ultra-low latency PCVR streaming for Meta Quest",
+  "main": "pc-server/dist/index.js",
+  "scripts": {
+    "install:all": "npm install && cd pc-server && npm install && cd ../quest-client && npm install && cd ../webrtc-signaling && npm install",
+    "start:server": "cd pc-server && npm start",
+    "start:signaling": "cd webrtc-signaling && npm start",
+    "build": "npm run build:server && npm run build:encoder && npm run build:quest",
+    "build:server": "cd pc-server && npm run build",
+    "build:encoder": "cd encoder && npm run build:windows || npm run build:linux",
+    "build:quest": "cd quest-client && npm run build",
+    "dev": "npm run start:signaling & npm run start:server",
+    "test": "jest",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "keywords": [
+    "pcvr",
+    "vr",
+    "streaming",
+    "meta-quest",
+    "webrtc",
+    "h264"
+  ],
+  "author": "xandobler-ai",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
